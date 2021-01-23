@@ -6,9 +6,7 @@ const path = require('path');
 //*** Directories ***//
 //===================//
 const PUBLIC_DIR = path.resolve(__dirname, './public');
-const ROUTE_DIR = path.resolve(__dirname, './routes');
-const htmlRouter = path.join(ROUTE_DIR, './html-routes.js');
-const apiRouter = path.join(ROUTE_DIR, './api-routes.js')
+const ROUTE_DIR = path.resolve(__dirname, './routers');
 
 //*** Express app ***//
 //===================//
@@ -21,10 +19,10 @@ app.use(express.static(PUBLIC_DIR));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//*** Routing ***//
+//*** Routers ***//
 //===============//
-app.use('/', require(htmlRouter));
-app.use('/api', require(apiRouter));
+app.use('/', require(`${ROUTE_DIR}/html.js`));
+app.use('/api', require(`${ROUTE_DIR}/api.js`));
 
 //*** Listener ***//
 //================//

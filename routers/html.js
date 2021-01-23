@@ -8,7 +8,7 @@ const path = require('path');
 const router = express.Router();
 
 //*** HTML Routes ***//
-//*******************//
+//===================//
 
 //Root route to index.html
 router.get('/', (req, res) => {
