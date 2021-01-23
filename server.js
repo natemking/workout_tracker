@@ -27,8 +27,9 @@ app.use(express.json());
 
 //*** Routing ***//
 //===============//
-require(htmlRoutes)(router);
+require(htmlRoutes)(app);
 require(apiRoutes)(router);
+
 
 //*** Listener ***//
 //================//
