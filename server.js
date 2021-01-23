@@ -22,8 +22,8 @@ app.use(express.json());
 
 //*** Routers ***//
 //===============//
-app.use('/', require(`${ROUTE_DIR}/html.js`));
-app.use('/api', require(`${ROUTE_DIR}/api.js`));
+app.use('/', require(path.join(ROUTE_DIR, 'html.js')));
+app.use('/api', require(path.join(ROUTE_DIR, 'api.js')));
 
 //*** Listener ***//
 //================//
