@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = (router) => {
     //Root route to index.html
     router.get('/', (req, res) => {
-        res.sendFile('./index.html');
+        res.sendFile(__dirname, '../public/index.html');
     });
 
     //Route to exercise.html
