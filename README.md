@@ -1,8 +1,5 @@
-# workout_tracker
+# Workout Tracker
 Homework# 17 NoSQL: Workout Tracker
-
-# Burger Banquet
-Homework #13 Express-Handlebars: Burger Banquet
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/natemking/burger_banquet/blob/main/LICENSE)
 
