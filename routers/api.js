@@ -1,16 +1,14 @@
 //*** Dependencies ***//
 //====================//
 const express = require('express');
-const path = require('path');
 
 //*** Express Router ***//
 //======================//
-const router = express.Router()
+const router = express.Router();
 
-//*** Model connection ***//
-//========================//
-const mongoose = require('../models/dbconn');
-const db = require(path.join(__dirname, '../models'));
+//*** Models connection ***//
+//=========================//
+const db = require('../models');
 
 //*** API Routes ***//
 //==================//

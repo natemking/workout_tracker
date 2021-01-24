@@ -55,7 +55,7 @@ Licensed under the GNU GPLv3.0 License. Copyright © 2020
 
 <!-- * [Use async/await with Mongoose connection](https://gist.github.com/emilioriosvz/abdbe137737b830b21d66dc5f1236311)
 
-* [Better Express routing for Node JS](https://caffeinecoding.com/better-express-routing-for-nodejs/)
+* [Set up mongoose models like sequelize model set up](https://gist.github.com/AKIRA-MIYAKE/03b9ae80dbdf61bf28ef)
 
 * [Toggle a Boolean](https://stackoverflow.com/questions/11604409/how-to-toggle-a-boolean)  -->
 
