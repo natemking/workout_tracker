@@ -53,7 +53,7 @@ Licensed under the GNU GPLv3.0 License. Copyright © 2020
 
 ## Credits
 
-<!-- * [Guide to Express-Handlebars](https://stackabuse.com/guide-to-handlebars-templating-engine-for-node/)
+<!-- * [Use async/await with Mongoose connection](https://gist.github.com/emilioriosvz/abdbe137737b830b21d66dc5f1236311)
 
 * [Better Express routing for Node JS](https://caffeinecoding.com/better-express-routing-for-nodejs/)
 
