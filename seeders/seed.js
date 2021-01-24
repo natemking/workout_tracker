@@ -1,10 +1,10 @@
 let mongoose = require("mongoose");
 let db = require("../models");
 
-mongoose.connect(process.env.dbURI, {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+// mongoose.connect(process.env.dbURI, {
+//   useNewUrlParser: true,
+//   useFindAndModify: false
+// });
 
 let workoutSeed = [
   {
