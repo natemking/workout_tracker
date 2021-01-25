@@ -4,9 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
 const basename = path.basename(__filename);
-let models = {};
+const models = {};
 
-//Connect to the DB
+// Connect to the DB
 (async () => {
     try {
         await mongoose.connect(process.env.dbURI, {
@@ -14,23 +14,16 @@ let models = {};
             useFindAndModify: false,
             useUnifiedTopology: true
         });
-    } catch (err) {
-        err => console.error(err);
-    }
-}
-)();
+    } catch (err) { err => console.error(err) }
+})();
 
 //Notify of successful DB connection
 mongoose.connection.on('connected', () => {
-    console.log(`> Mongoose connection to '${process.env.dbName}' established`)
+    console.log(`> Mongoose connection to '${process.env.dbName}' connected`)
 });
 //Notify when DB is disconnected
 mongoose.connection.on('disconnected', () => {
     console.log(`> Mongoose connection to '${process.env.dbName}' disconnected`)
-});
-//Notify when DB is reconnected
-mongoose.connection.on('reconnected', () => {
-    console.log(`> Mongoose connection to '${process.env.dbName}' reestablished`)
 });
 //Notify when DB is closed
 mongoose.connection.on('close', () => {
