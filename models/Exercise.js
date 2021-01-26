@@ -1,7 +1,10 @@
 module.exports = (mongoose, Schema) => {
-    const exerciseSchema = new Schema({
+    const ExerciseSchema = new Schema({
             type: String,
-            name: {type: String, trim: true},
+            name: {
+                type: String, 
+                trim: true
+            },
             duration: Number,
             weight: Number,
             reps: Number,
@@ -9,8 +12,8 @@ module.exports = (mongoose, Schema) => {
             distance: Number
     },
     { timestamps: true });
-    
-    const Exercise = mongoose.model('Exercise', exerciseSchema);
+
+    const Exercise = mongoose.model('Exercise', ExerciseSchema);
 
     return Exercise;
 }

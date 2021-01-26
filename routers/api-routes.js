@@ -36,7 +36,12 @@ router.route('/workouts/:id?')
             res.json(data);
         } catch (err) { err => console.error(err) }
     }).post( async (req, res) => {
-
+        try {
+            
+            data = await db.Workout.create({ exercises: []});
+            
+            res.json(data);
+        } catch (err) { err => console.error(err) }
     }).put( async (req, res) => {
         try {
             //Create a new exercise doc with user input

@@ -1,5 +1,5 @@
 module.exports = (mongoose, Schema) => {
-    const workoutSchema = new Schema({
+    const WorkoutSchema = new Schema({
         day: {type: Date, default: Date.now},
         exercises: [
             {
@@ -8,9 +8,9 @@ module.exports = (mongoose, Schema) => {
             }
         ]
     },
-    {timestamps: true});
+    { timestamps: true });
 
-    const Workout = mongoose.model('Workout', workoutSchema);
+    const Workout = mongoose.model('Workout', WorkoutSchema);
 
     return Workout;
 }
