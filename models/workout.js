@@ -1,6 +1,6 @@
 module.exports = (mongoose, Schema) => {
     const workoutSchema = new Schema({
-        day: Date,
+        day: {type: Date, default: Date.now},
         exercises: [
             {
                 type: Schema.Types.Object,

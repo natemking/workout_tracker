@@ -31,19 +31,19 @@ router.route('/workouts/:id?')
     .get( async (req, res) => {
         try {
             //Find all workouts
-            const data = await db.Workout.find({});
+            const data = await db.Workout.find({}).populate('exercises');
             //Respond w/ JSON of the results
             res.json(data);
         } catch (err) { err => console.error(err) }
     }).post( async (req, res) => {
-        
+
     }).put( async (req, res) => {
         try {
             //Create a new exercise doc with user input
             const newEx = await createEx(req);
             //Push the new exercise doc to the corresponding workout doc
             const data = await db.Workout.findByIdAndUpdate(req.params.id, 
-                {$push: {exercises: newEx}});
+                { $push: { exercises: newEx._id }}, { new: true });
                 //Respond w/ JSON of results
             res.json(data);    
         } catch (err) { err => console.error(err) }

@@ -12,7 +12,7 @@ mongoose.connect(process.env.dbURI, {
 
 let workoutSeed = [
   {
-    day: new Date().setDate(new Date().getDate()-10),
+    day: new Date(new Date().setDate(new Date().getDate() - 10)),
     exercises: [
       {
         type: "resistance",
@@ -25,7 +25,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-9),
+    day: new Date(new Date().setDate(new Date().getDate() - 9)),
     exercises: [
       {
         type: "resistance",
@@ -38,7 +38,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-8),
+    day: new Date(new Date().setDate(new Date().getDate() - 8)),
     exercises: [
       {
         type: "resistance",
@@ -51,7 +51,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-7),
+    day: new Date(new Date().setDate(new Date().getDate() - 7)),
     exercises: [
       {
         type: "cardio",
@@ -62,7 +62,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-6),
+    day: new Date(new Date().setDate(new Date().getDate() - 6)),
     exercises: [
       {
         type: "resistance",
@@ -75,7 +75,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-5),
+    day: new Date(new Date().setDate(new Date().getDate() - 5)),
     exercises: [
       {
         type: "resistance",
@@ -128,13 +128,40 @@ let workoutSeed = [
   }
 ];
 
-db.Workout.deleteMany({})
-  .then(() => db.Workout.collection.insertMany(workoutSeed))
-  .then(data => {
+//Create new seed array that is just the data for the Workout model
+const woSeed = workoutSeed.map(obj => ({ day: obj.day, exercises: []}));
+//Create new seed array that is just the data for the Exercise model
+const exSeed = workoutSeed.map(obj => obj.exercises ).flat();
+
+//Seed function
+const seed = async () => {
+  try {
+    //Delete exercise collection if exits and insert the Exercise seed data
+    await db.Exercise.deleteMany({});
+    await db.Exercise.collection.insertMany(exSeed);
+    //Delete workout collection if exits and insert the Workout seed data
+    await db.Workout.deleteMany({});
+    await db.Workout.collection.insertMany(woSeed);
+
+    //Find the newly created exercise data 
+    const ex = await db.Exercise.find({});
+    //Find the newly created workout data w/o the _id
+    const wo = await db.Workout.find({}).select('exercises day -_id');
+
+    //Loop and push the corresponding exercise obj _id to its respective workout exercise field
+    for (let i = 0; i < ex.length; i++) {
+      wo[i].exercises.push(ex[i]._id);
+    }
+    //Delete workout collection if exits and insert the new Workout seed data with the Exercise obj _id's
+    await db.Workout.deleteMany({})
+    data = await db.Workout.collection.insertMany(wo);
+    //Log how many records seeded
     console.log(data.result.n + " records inserted!");
     process.exit(0);
-  })
-  .catch(err => {
+  } catch (err) { 
     console.error(err);
     process.exit(1);
-  });
+  }
+}
+//Run seeder function
+seed();
