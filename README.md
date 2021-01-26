@@ -57,7 +57,7 @@ Licensed under the GNU GPLv3.0 License. Copyright © 2020
 
 * [Set up mongoose models like sequelize model set up](https://gist.github.com/AKIRA-MIYAKE/03b9ae80dbdf61bf28ef)
 
-* [Toggle a Boolean](https://stackoverflow.com/questions/11604409/how-to-toggle-a-boolean)  -->
+* [Creating relationships w/ Mongoose](https://dev.to/oluseyeo/how-to-create-relationships-with-mongoose-and-node-js-11c8)  -->
 
 ---
 

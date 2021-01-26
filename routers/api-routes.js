@@ -13,8 +13,16 @@ const db = require('../models');
 //*** API Routes ***//
 //==================//
 router.route('/workouts/:id?') 
-    .get((req, res) => {
-    res.json({ 'test': 'passed'});
+    .get( async (req, res) => {
+        try {
+            const data = await db.Workout.find({});
+            res.json(data);
+            console.log(data);
+        } catch (err) { err => console.error(err) }
+    }).post ( async (req, res) => {
+        try {
+            console.log(req.body);
+        } catch (err) { err => console.error(err) }
     })
 
 
