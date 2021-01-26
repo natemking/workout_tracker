@@ -13,7 +13,7 @@ let db = {};
 // Connect to the DB
 (async () => {
     try {
-        await mongoose.connect(process.env.dbURI, {
+        await mongoose.connect(process.env.dbURI || `mongodb://127.0.0.1:27017/${process.env.dbName}`, {
             useNewUrlParser: true,
             useFindAndModify: false,
             useUnifiedTopology: true

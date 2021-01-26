@@ -30,9 +30,13 @@ const createEx = async (req) => {
 router.route('/workouts/:id?') 
     .get( async (req, res) => {
         try {
+            //Find all workouts
             const data = await db.Workout.find({});
+            //Respond w/ JSON of the results
             res.json(data);
         } catch (err) { err => console.error(err) }
+    }).post( async (req, res) => {
+        
     }).put( async (req, res) => {
         try {
             //Create a new exercise doc with user input
@@ -40,7 +44,7 @@ router.route('/workouts/:id?')
             //Push the new exercise doc to the corresponding workout doc
             const data = await db.Workout.findByIdAndUpdate(req.params.id, 
                 {$push: {exercises: newEx}});
-
+                //Respond w/ JSON of results
             res.json(data);    
         } catch (err) { err => console.error(err) }
     })
