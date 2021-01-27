@@ -32,6 +32,7 @@ const findAndPop = db.Workout.find({}).populate('exercises');
 //==================//
 router.route('/workouts/:id?') 
     .get( async (req, res) => {
+        console.log(req.params.id);
         //Range route for the charting data to appear with one week of data
         if (req.params.id  === 'range') {
             
@@ -41,7 +42,7 @@ router.route('/workouts/:id?')
                 //Respond w/ a JSON of results in reverse order
                 res.json(data.reverse())
             } catch (err) { err => console.error(err) }
-        } else {
+        } else if (req.params.id === undefined) {
             //All other route params 
             try {
                 //Find all & populate
