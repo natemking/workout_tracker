@@ -10,7 +10,8 @@ const Schema  = mongoose.Schema
 //=====================//
 let db = {};
 
-// Connect to the DB
+//*** MongoDB Connection ***//
+//==========================//
 let dbName = 'workoutDB';
 
 (async () => {
@@ -41,7 +42,8 @@ mongoose.connection.on('error', (err) => {
     console.log(`ERROR: ${err}`)
 });
 
-
+//*** Model file association ***//
+//==============================//
 fs.readdirSync(__dirname)
     .filter((filename) => {
         // Get file's name that lives in the same directory that are not index.js

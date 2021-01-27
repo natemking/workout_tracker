@@ -28,7 +28,6 @@ const createEx = async (req, param) => {
 //Find all workouts and populate the relational exercises
 const findAndPop = db.Workout.find({}).populate('exercises');
 
-
 //*** API Routes ***//
 //==================//
 router.route('/workouts/:id?') 
