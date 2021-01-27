@@ -18,7 +18,8 @@ let dbName = 'workoutDB';
         await mongoose.connect(process.env.MONGODB_URI || `mongodb://127.0.0.1:27017/${dbName}`, {
             useNewUrlParser: true,
             useFindAndModify: false,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
+            useCreateIndex: true
         });
     } catch (err) { err => console.error(err) }
 })();
