@@ -32,16 +32,15 @@ const findAndPop = db.Workout.find({}).populate('exercises');
 //==================//
 router.route('/workouts/:id?') 
     .get( async (req, res) => {
-        console.log(req.params.id);
         //Range route for the charting data to appear with one week of data
         if (req.params.id  === 'range') {
-            res.send('wtf')
-            // try {
-            //     //Find all & pop then sort in descending & limit to the last 7 docs
-            //     const data = await findAndPop.sort({day: -1}).limit(7);
-            //     //Respond w/ a JSON of results in reverse order
-            //     res.json(data.reverse())
-            // } catch (err) { err => console.error(err) }
+            
+            try {
+                //Find all & pop then sort in descending & limit to the last 7 docs
+                const data = await findAndPop.sort({day: -1}).limit(7);
+                //Respond w/ a JSON of results in reverse order
+                res.json(data.reverse())
+            } catch (err) { err => console.error(err) }
         } else {
             //All other route params 
             try {
