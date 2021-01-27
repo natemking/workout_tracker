@@ -2,14 +2,6 @@ let mongoose = require("mongoose");
 let db = require("../models");
 require('dotenv').config();
 
-
-// mongoose.connect('mongodb://localhost:27017/workoutDB', {
-//   useNewUrlParser: true,
-//   useFindAndModify: false,
-//   useUnifiedTopology: true
-// });
-
-
 let workoutSeed = [
   {
     day: new Date(new Date().setDate(new Date().getDate() - 10)),
