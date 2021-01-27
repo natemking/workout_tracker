@@ -3,7 +3,7 @@ let db = require("../models");
 require('dotenv').config();
 
 
-mongoose.connect(process.env.dbURI, {
+mongoose.connect('mongodb://localhost:27017/workoutDB', {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
@@ -129,7 +129,7 @@ let workoutSeed = [
 ];
 
 //Create new seed array that is just the data for the Workout model
-const woSeed = workoutSeed.map(obj => ({ day: obj.day, exercises: []}));
+const woSeed = workoutSeed.map(obj => ({ day: obj.day, exercises: [], totalDuration: 0}));
 //Create new seed array that is just the data for the Exercise model
 const exSeed = workoutSeed.map(obj => obj.exercises ).flat();
 
@@ -146,7 +146,7 @@ const seed = async () => {
     //Find the newly created exercise data 
     const ex = await db.Exercise.find({});
     //Find the newly created workout data w/o the _id
-    const wo = await db.Workout.find({}).select('exercises day -_id');
+    const wo = await db.Workout.find({}).select('exercises day totalDuration -_id');
 
     //Loop and push the corresponding exercise obj _id to its respective workout exercise field
     for (let i = 0; i < ex.length; i++) {

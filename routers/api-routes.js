@@ -30,16 +30,16 @@ const createEx = async (req) => {
 router.route('/workouts/:id?') 
     .get( async (req, res) => {
         try {
-            //Find all workouts
+            //Find all workouts and populate the relational exercises
             const data = await db.Workout.find({}).populate('exercises');
             //Respond w/ JSON of the results
             res.json(data);
         } catch (err) { err => console.error(err) }
     }).post( async (req, res) => {
         try {
-            
-            data = await db.Workout.create({ exercises: []});
-            
+            //Create a new workout
+            data = await db.Workout.create({ exercises: [] });
+            //Respond w/ JSON on the results
             res.json(data);
         } catch (err) { err => console.error(err) }
     }).put( async (req, res) => {
@@ -52,8 +52,6 @@ router.route('/workouts/:id?')
                 //Respond w/ JSON of results
             res.json(data);    
         } catch (err) { err => console.error(err) }
-    })
-
-
+    });
 
 module.exports = router;
