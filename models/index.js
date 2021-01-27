@@ -11,9 +11,11 @@ const Schema  = mongoose.Schema
 let db = {};
 
 // Connect to the DB
+let dbName = 'workoutDB';
+
 (async () => {
     try {
-        await mongoose.connect(process.env.dbURI || `mongodb://127.0.0.1:27017/${process.env.dbName}`, {
+        await mongoose.connect(process.env.dbURI || `mongodb://127.0.0.1:27017/${dbName}`, {
             useNewUrlParser: true,
             useFindAndModify: false,
             useUnifiedTopology: true
@@ -23,15 +25,15 @@ let db = {};
 
 //Notify of successful DB connection
 mongoose.connection.on('connected', () => {
-    console.log(`> Mongoose connection to '${process.env.dbName}' connected`)
+    console.log(`> Mongoose connection to '${dbName}' connected`)
 });
 //Notify when DB is disconnected
 mongoose.connection.on('disconnected', () => {
-    console.log(`> Mongoose connection to '${process.env.dbName}' disconnected`)
+    console.log(`> Mongoose connection to '${dbName}' disconnected`)
 });
 //Notify when DB is closed
 mongoose.connection.on('close', () => {
-    console.log(`> '${process.env.dbName}' connection closed`)
+    console.log(`> '${dbName}' connection closed`)
 });
 //Notify if error in connection
 mongoose.connection.on('error', (err) => {

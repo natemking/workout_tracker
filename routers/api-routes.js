@@ -31,14 +31,14 @@ router.route('/workouts/:id?')
     .get( async (req, res) => {
         try {
             //Find all workouts and populate the relational exercises
-            const data = await db.Workout.find({}).populate('exercises');
-            //Respond w/ JSON of the results
+            const data = await db.Workout.find({}).populate('exercises')//.aggregate([{$group: {_id: null, totalDuration: {$sum: '$duration'}}}]);
+            // Respond w/ JSON of the results
             res.json(data);
         } catch (err) { err => console.error(err) }
     }).post( async (req, res) => {
         try {
             //Create a new workout
-            data = await db.Workout.create({ exercises: [] });
+            data = await db.Workout.create(req.body);
             //Respond w/ JSON on the results
             res.json(data);
         } catch (err) { err => console.error(err) }
@@ -47,7 +47,7 @@ router.route('/workouts/:id?')
             //Create a new exercise doc with user input
             const newEx = await createEx(req);
             //Push the new exercise doc to the corresponding workout doc
-            const data = await db.Workout.findByIdAndUpdate(req.params.id, 
+            await db.Workout.findByIdAndUpdate(req.params.id, 
                 { $push: { exercises: newEx._id }}, { new: true });
                 //Respond w/ JSON of results
             res.json(data);    
