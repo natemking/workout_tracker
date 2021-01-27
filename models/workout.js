@@ -6,7 +6,11 @@ module.exports = (mongoose, Schema) => {
                 type: Schema.Types.Object,
                 ref: 'Exercise'
             }
-        ]
+        ],
+        totalDuration: {
+            type: Number,
+            default: 0
+        }
     },
     { timestamps: true });
 

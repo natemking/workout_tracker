@@ -1,6 +1,5 @@
 let mongoose = require("mongoose");
 let db = require("../models");
-require('dotenv').config();
 
 let workoutSeed = [
   {
@@ -14,7 +13,8 @@ let workoutSeed = [
         reps: 10,
         sets: 4
       }
-    ]
+    ],
+    totalDuration: 20
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 9)),
@@ -27,7 +27,8 @@ let workoutSeed = [
         reps: 10,
         sets: 4
       }
-    ]
+    ],
+    totalDuration: 20
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 8)),
@@ -40,7 +41,8 @@ let workoutSeed = [
         reps: 8,
         sets: 4
       }
-    ]
+    ],
+    totalDuration: 25
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 7)),
@@ -51,7 +53,8 @@ let workoutSeed = [
         duration: 25,
         distance: 4
       }
-    ]
+    ],
+    totalDuration: 25
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 6)),
@@ -64,7 +67,8 @@ let workoutSeed = [
         reps: 10,
         sets: 4
       }
-    ]
+    ],
+    totalDuration: 20
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 5)),
@@ -77,7 +81,8 @@ let workoutSeed = [
         reps: 10,
         sets: 4
       }
-    ]
+    ],
+    totalDuration: 20
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 4)),
@@ -90,7 +95,8 @@ let workoutSeed = [
         reps: 10,
         sets: 4
       }
-    ]
+    ],
+    totalDuration: 30
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 3)),
@@ -103,7 +109,8 @@ let workoutSeed = [
         reps: 10,
         sets: 4
       }
-    ]
+    ],
+    totalDuration: 20
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 2)),
@@ -116,12 +123,13 @@ let workoutSeed = [
         reps: 10,
         sets: 4
       }
-    ]
+    ],
+    totalDuration: 20
   }
 ];
 
 //Create new seed array that is just the data for the Workout model
-const woSeed = workoutSeed.map(obj => ({ day: obj.day, exercises: []}));
+const woSeed = workoutSeed.map(obj => ({ day: obj.day, exercises: [], totalDuration: obj.totalDuration}));
 //Create new seed array that is just the data for the Exercise model
 const exSeed = workoutSeed.map(obj => obj.exercises ).flat();
 
@@ -138,7 +146,7 @@ const seed = async () => {
     //Find the newly created exercise data 
     const ex = await db.Exercise.find({});
     //Find the newly created workout data w/o the _id
-    const wo = await db.Workout.find({}).select('exercises day -_id');
+    const wo = await db.Workout.find({}).select('exercises day totalDuration -_id');
 
     //Loop and push the corresponding exercise obj _id to its respective workout exercise field
     for (let i = 0; i < ex.length; i++) {
