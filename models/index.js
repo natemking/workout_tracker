@@ -41,12 +41,14 @@ mongoose.connection.on('error', (err) => {
     console.log(`ERROR: ${err}`)
 });
 
+
 fs.readdirSync(__dirname)
     .filter((filename) => {
         // Get file's name that lives in the same directory that are not index.js
         return (filename.indexOf('.') !== 0) && (filename !== basename) && (filename.slice(-3) === '.js');
     })
     .forEach((file) => {
+        //Format the models files and pass the arguments they need for modeling
         const model = require(path.join(__dirname, file))(mongoose, Schema);
         db[model.name] = model;
     });

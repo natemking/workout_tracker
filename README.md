@@ -60,7 +60,12 @@ Licensed under the GNU GPLv3.0 License. Copyright © 2020
 * [Creating relationships w/ Mongoose](https://dev.to/oluseyeo/how-to-create-relationships-with-mongoose-and-node-js-11c8)  
 
 * [FindByIdAndUpdate $push in Mongoose](https://stackoverflow.com/questions/15621970/pushing-object-into-array-schema-in-mongoose)
-* [Mongoose CRUD](https://coursework.vschool.io/mongoose-crud/)-->
+* [Mongoose CRUD](https://coursework.vschool.io/mongoose-crud/)
+
+* [Limit the most recent results in ascending order w/ Mongoose](https://stackoverflow.com/questions/39069491/how-to-get-last-5-docs-in-sequential-order)
+
+
+-->
 
 ---
 

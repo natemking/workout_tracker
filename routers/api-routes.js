@@ -25,14 +25,27 @@ const createEx = async (req, param) => {
         parentId: param
     });
 }
+//Find all workouts and populate the relational exercises
+const findAndPop = db.Workout.find({}).populate('exercises');
+
 
 //*** API Routes ***//
 //==================//
 router.route('/workouts/:id?') 
     .get( async (req, res) => {
+        //Range route for the charting data to appear with one week of data
+        if (req.params.id  === 'range') {
+            try {
+                //Find all & pop then sort in descending & limit to the last 7 docs
+                const data = await findAndPop.sort({day: -1}).limit(7);
+                //Respond w/ a JSON of results in reverse order
+                res.json(data.reverse())
+            } catch (err) { err => console.error(err) }
+        }
+        //All other route params 
         try {
-            //Find all workouts and populate the relational exercises
-            const data = await db.Workout.find({}).populate('exercises');
+            //Find all & populate
+            const data = await findAndPop;
             // Respond w/ JSON of the results
             res.json(data);
         } catch (err) { err => console.error(err) }
@@ -55,15 +68,6 @@ router.route('/workouts/:id?')
             //Respond w/ JSON of the results
             res.json(data);    
         } catch (err) { err => console.error(err) }
-    });
-
-router.route('/workouts/range')
-    .get( async (req, res) => {
-        try {
-            const data = await db.Workout.find({}).length(7);
-            res.json(data)
-        } catch (err) { err => console.error(err) }
-            
     });
 
 module.exports = router;
