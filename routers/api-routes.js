@@ -38,15 +38,15 @@ router.route('/workouts/:id?')
             
             try {
                 //Find all & pop then sort in descending & limit to the last 7 docs
-                const data = await findAndPop.sort({day: -1}).limit(7);
+                const statData = await db.Workout.find({}).populate('exercises').sort({day: -1}).limit(7);
                 //Respond w/ a JSON of results in reverse order
-                res.json(data)
+                res.json(statData.reverse())
             } catch (err) { err => console.error(err) }
-        } else if (req.params.id === undefined) {
+        } else if (req.params.id === undefined){
             //All other route params 
             try {
                 //Find all & populate
-                const data = await findAndPop;
+                const data = await db.Workout.find({}).populate('exercises');
                 // Respond w/ JSON of the results
                 res.json(data);
             } catch (err) { err => console.error(err) }
