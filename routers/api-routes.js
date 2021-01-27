@@ -40,14 +40,15 @@ router.route('/workouts/:id?')
                 //Respond w/ a JSON of results in reverse order
                 res.json(data.reverse())
             } catch (err) { err => console.error(err) }
+        } else {
+            //All other route params 
+            try {
+                //Find all & populate
+                const data = await findAndPop;
+                // Respond w/ JSON of the results
+                res.json(data);
+            } catch (err) { err => console.error(err) }
         }
-        //All other route params 
-        try {
-            //Find all & populate
-            const data = await findAndPop;
-            // Respond w/ JSON of the results
-            res.json(data);
-        } catch (err) { err => console.error(err) }
     }).post( async (req, res) => {
         try {
             //Create a new workout
